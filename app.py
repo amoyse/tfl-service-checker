@@ -1,4 +1,7 @@
+import os
 import requests
+import http.client
+import urllib
 
 LINES_TO_CHECK = ["elizabeth", "hammersmith-city"]
 
@@ -15,6 +18,16 @@ def check_tube_status():
             })
     return issues
 
+def send_notification(message):
+    conn = http.client.HTTPSConnection("api.pushover.net:443")
+    conn.request("POST", "/1/messages.json",
+                 urllib.parse.urlencode({
+                     "token": os.getenv("PUSHOVER_APP_TOKEN"),
+                     "user": os.getenv("PUSHOVER_USER_KEY"),
+                     "message": message,
+                 }), {"Content-type": "application/x-www-form-urlencoded"})
+    conn.getresponse()
+
 
 def main():
     issues = check_tube_status()
@@ -23,6 +36,8 @@ def main():
         message = "Tube Line Issues:\n"
         for issue in issues:
             message += f"{issue['line']}: {issue['status']}\n"
+
+        send_notification(message)
 
 
 if __name__ == "__main__":
