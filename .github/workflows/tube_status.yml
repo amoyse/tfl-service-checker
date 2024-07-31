@@ -28,4 +28,4 @@ jobs:
         PUSHOVER_APP_TOKEN: ${{ secrets.PUSHOVER_APP_TOKEN }}
         PUSHOVER_USER_KEY: ${{ secrets.PUSHOVER_USER_KEY }}
       run: |
-        python tube_status.py
+        python app.py
