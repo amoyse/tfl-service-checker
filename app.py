@@ -37,7 +37,7 @@ def main():
         for issue in issues:
             message += f"{issue['line']}: {issue['status']}\n"
 
-        message += "https://tfl.gov.uk/tube-dlr-overground/status/ for more details"
+        message += "\nhttps://tfl.gov.uk/tube-dlr-overground/status/ for more details"
         send_notification(message)
 
 
