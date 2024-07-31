@@ -2,7 +2,8 @@ name: Check Tube Status
 
 on:
   schedule:
-    - cron: '30 7 * * *'  # Runs at 7:30 AM UTC every day
+    # - cron: '30 7 * * *'  # Runs at 7:30 AM UTC every day
+    - cron: '* * * * *'
   workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
