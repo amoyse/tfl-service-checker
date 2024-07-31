@@ -14,7 +14,8 @@ def check_tube_status():
             closure_text = data[0].get('closureText')
             issues.append({
                 'line': line,
-                'status': closure_text
+                'status': closure_text,
+                'details': data[0].get('details')
             })
     return issues
 
@@ -37,6 +38,9 @@ def main():
         for issue in issues:
             message += f"{issue['line']}: {issue['status']}\n"
 
+        for issue in issues:
+            if LINES_TO_CHECK[0] == issue['line']:
+                message += f"\nLiz Details: {issue['details']}"
         message += "\nhttps://tfl.gov.uk/tube-dlr-overground/status/ for more details"
         send_notification(message)
 
