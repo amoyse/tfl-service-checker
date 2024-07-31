@@ -41,7 +41,7 @@ def main():
         for issue in issues:
             if LINES_TO_CHECK[0] == issue['line']:
                 message += f"\nLiz Details: {issue['details']}"
-        message += "\nhttps://tfl.gov.uk/tube-dlr-overground/status/ for more details"
+        message += "\nhttps://tfl.gov.uk/tube-dlr-overground/status/"
         send_notification(message)
 
 
