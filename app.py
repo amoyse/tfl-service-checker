@@ -15,7 +15,7 @@ def check_tube_status():
             issues.append({
                 'line': line,
                 'status': closure_text,
-                'details': data[0].get('details')
+                'details': data[0].get('description')
             })
     return issues
 
